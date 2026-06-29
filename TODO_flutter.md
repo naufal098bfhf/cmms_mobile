@@ -1,0 +1,1 @@
+# Pure Flutter Fix - Progress&#10;&#10;## Completed:&#10;&#10;## Steps:&#10;- [ ] Delete custom Kotlin dirs&#10;- [ ] Standard MainActivity.kt&#10;- [ ] Fix build.gradle.kts (NDK)&#10;- [ ] Create lib/models/login_models.dart&#10;- [ ] Update lib/pages/login_page.dart with API logic&#10;- [ ] flutter clean &amp; pub get &amp; run&#10;
