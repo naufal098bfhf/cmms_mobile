@@ -9,7 +9,7 @@ class UserDetailPage extends StatelessWidget {
   });
 
 final String baseUrl =
-    "http://192.168.100.218/storage/";
+    "http://192.168.1.175/storage/";
 
   Color roleColor(String role) {
     switch (role.toLowerCase()) {

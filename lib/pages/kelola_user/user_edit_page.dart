@@ -28,7 +28,7 @@ class _UserEditPageState extends State<UserEditPage> {
 XFile? imageFile;
 final picker = ImagePicker();
   /// 🔥 BASE URL LARAVEL
-  final String baseUrl = "http://192.168.100.218:8001/storage/";
+  final String baseUrl = "http://192.168.1.175:8001/storage/";
 
   @override
   void initState() {

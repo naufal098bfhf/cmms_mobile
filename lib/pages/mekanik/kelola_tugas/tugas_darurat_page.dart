@@ -83,9 +83,26 @@ String _buildFotoUrl(String buktiFoto, String baseUrl) {
             .toList();
 
         // Filter hanya tugas milik mekanik yang login
-        data = data
-            .where((e) => e.namaMekanik == widget.user.name)
-            .toList();
+       final today = DateTime.now();
+
+data = data.where((e) {
+  final mulai = DateTime.parse(e.tglMulai);
+
+  final tanggalMulai = DateTime(
+    mulai.year,
+    mulai.month,
+    mulai.day,
+  );
+
+  final tanggalHariIni = DateTime(
+    today.year,
+    today.month,
+    today.day,
+  );
+
+  return e.namaMekanik == widget.user.name &&
+      !tanggalMulai.isAfter(tanggalHariIni);
+}).toList();
 
         // DATA TERBARU PALING ATAS
         data.sort((a, b) => b.id.compareTo(a.id));

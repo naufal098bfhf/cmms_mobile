@@ -107,7 +107,7 @@
     final fotoUrl =
         data['bukti_foto'] != null &&
         data['bukti_foto'].toString().isNotEmpty
-            ? "http://192.168.100.218:8001/storage/${data['bukti_foto']}"
+            ? "http://192.168.1.175:8001/storage/${data['bukti_foto']}"
             : null;
 
     print("BUKTI FOTO = ${data['bukti_foto']}");

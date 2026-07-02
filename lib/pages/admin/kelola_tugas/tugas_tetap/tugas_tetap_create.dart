@@ -102,7 +102,7 @@ class _TugasTetapCreatePageState
             'mekanik',
       ).toList();
 
-      equipmentData = eq;
+      equipmentData = eq; 
     });
   }
 

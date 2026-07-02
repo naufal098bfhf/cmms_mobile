@@ -11,7 +11,7 @@ import '../models/tugas_tetap_model.dart';
 
     class ApiService {
 static const String baseUrl =
-      "http://192.168.100.218:8001/api";
+      "http://192.168.1.175:8001/api";
 
 
       // ================= LOGIN =================

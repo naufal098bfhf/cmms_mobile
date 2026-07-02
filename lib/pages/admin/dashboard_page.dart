@@ -32,7 +32,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
   int dashboardValidasiCount = 0;
   late Future<DashboardModel> dashboardData;
   final String baseUrl =
-    "http://192.168.100.218:8001/storage/";
+    "http://192.168.1.69:8001/storage/";
 
     bool get isOwner =>
       widget.user.role.toLowerCase().trim() ==

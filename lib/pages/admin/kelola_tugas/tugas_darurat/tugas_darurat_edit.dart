@@ -103,9 +103,9 @@ class _TugasDaruratEditPageState
       widget.tugas.tglSelesai,
     );
 
+
+
 selectedMekanik = [];
-    
-    
 
     loadData();
   }
@@ -142,39 +142,46 @@ selectedMekanik = [];
       ).toList();
 
       int? eqId;
+int? mekanikId;
 
-      try {
+try {
 
-        final found =
-            eq.firstWhere(
-          (e) =>
-              e['name']
-                  .toString() ==
-              widget
-                  .tugas
-                  .equipment,
-        );
+  final foundEq = eq.firstWhere(
+    (e) => e['name'].toString() == widget.tugas.equipment,
+  );
 
-        eqId = found['id'];
+  eqId = foundEq['id'];
 
-      } catch (_) {}
+} catch (_) {}
+
+try {
+
+  final foundMekanik = mekanik.firstWhere(
+    (m) =>
+        m['name'].toString().trim().toLowerCase() ==
+        widget.tugas.namaMekanik.trim().toLowerCase(),
+  );
+
+  mekanikId = foundMekanik['id'];
+
+} catch (_) {}
 
       setState(() {
 
-        mekanikData =
-            mekanik;
+  mekanikData = mekanik;
 
-        equipmentData =
-            eq;
+  equipmentData = eq;
 
-        selectedEquipment =
-            eqId;
+  selectedEquipment = eqId;
 
-        tagNumber =
-            widget.tugas.tagNumber;
+  tagNumber = widget.tugas.tagNumber;
 
-        loading = false;
-      });
+  if (mekanikId != null) {
+    selectedMekanik = [mekanikId];
+  }
+
+  loading = false;
+});
 
     } catch (e) {
 
