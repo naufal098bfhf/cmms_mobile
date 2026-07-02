@@ -1,60 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'pages/login_page.dart';
 
-import 'pages/riwayat_tugas_page.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  await dotenv.load(fileName: ".env");
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
-  const MyApp({
-    super.key,
-  });
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
-
       title: 'CMMS Login',
-
       theme: ThemeData(
-
         fontFamily: 'Roboto',
-
         primaryColor: Colors.orange,
       ),
-
-      // ==========================
-      // HALAMAN PERTAMA
-      // ==========================
-
       initialRoute: '/login',
-
-      // ==========================
-      // ROUTES
-      // ==========================
-
       routes: {
-
-        // ==========================
-        // LOGIN
-        // ==========================
-
-        '/login': (context) =>
-            const LoginPage(),
-
-        // ==========================
-        // RIWAYAT
-        // ==========================
-
-        '/admin/riwayat': (context) =>
-            const SizedBox.shrink(),
+        '/login': (context) => const LoginPage(),
       },
     );
   }

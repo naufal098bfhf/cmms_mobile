@@ -282,7 +282,7 @@ Future<void> pickImage() async {
                         child: Text("Mekanik"),
                       ),
                       DropdownMenuItem(
-                        value: "maintenance-planning",
+                        value: "maintenance_planning",
                         child:
                             Text("Maintenance Planning"),
                       ),

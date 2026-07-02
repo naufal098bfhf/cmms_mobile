@@ -41,7 +41,7 @@ import '../models/login_models.dart';
       user.role
           .toLowerCase()
           .trim() ==
-      'maintenance-planning';
+      'maintenance_planning';
 
   debugPrint("IS MP = $isMP");
 

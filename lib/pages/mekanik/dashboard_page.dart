@@ -25,10 +25,8 @@ class MekanikDashboardPage extends StatefulWidget {
       _DashboardPageState();
 }
 
-class _DashboardPageState
-    extends State<MekanikDashboardPage> {
-      final String baseUrl =
-    "http://192.168.1.175:8001/storage/";
+class _DashboardPageState extends State<MekanikDashboardPage> {
+  final String baseUrl = "${ApiService.storageUrl}/storage/";
   late Future<DashboardMekanikModel>
       dashboardData;
 

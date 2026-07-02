@@ -187,15 +187,64 @@ class _UserListPageState extends State<UserListPage> {
                       ),
                      child: Row(
   children: [
-    CircleAvatar(
-      radius: 26,
-      backgroundColor:
-          roleColor(user['role']).withOpacity(0.15),
-      child: Icon(
-        Icons.person,
-        color: roleColor(user['role']),
-      ),
-    ),
+   ClipOval(
+  child: SizedBox(
+    width: 52,
+    height: 52,
+    child: (user['photo'] != null &&
+            user['photo'].toString().isNotEmpty)
+        ? Image.network(
+            "${ApiService.storageUrl}/storage/${user['photo']}",
+            fit: BoxFit.cover,
+
+            // Loading saat foto sedang diambil
+            loadingBuilder: (
+              context,
+              child,
+              loadingProgress,
+            ) {
+              if (loadingProgress == null) {
+                return child;
+              }
+
+              return Container(
+                color: Colors.grey.shade200,
+                child: const Center(
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  ),
+                ),
+              );
+            },
+
+            // Jika foto gagal dimuat
+            errorBuilder: (
+              context,
+              error,
+              stackTrace,
+            ) {
+              return Container(
+                color: roleColor(user['role']).withOpacity(0.15),
+                child: Icon(
+                  Icons.person,
+                  color: roleColor(user['role']),
+                ),
+              );
+            },
+          )
+        : Container(
+            color: roleColor(user['role']).withOpacity(0.15),
+            child: Icon(
+              Icons.person,
+              color: roleColor(user['role']),
+            ),
+          ),
+  ),
+),
 
     const SizedBox(width: 12),
 

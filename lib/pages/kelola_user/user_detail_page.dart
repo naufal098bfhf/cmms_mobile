@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import '../../services/api_service.dart';
 
 class UserDetailPage extends StatelessWidget {
   final Map user;
 
-  const UserDetailPage({
+  UserDetailPage({
     super.key,
     required this.user,
   });
 
 final String baseUrl =
-    "http://192.168.1.175/storage/";
+    "${ApiService.storageUrl}/storage/";
 
   Color roleColor(String role) {
     switch (role.toLowerCase()) {

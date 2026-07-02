@@ -32,12 +32,13 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
   int dashboardValidasiCount = 0;
   late Future<DashboardModel> dashboardData;
   final String baseUrl =
-    "http://192.168.1.69:8001/storage/";
+    "${ApiService.storageUrl}/storage/";
 
     bool get isOwner =>
       widget.user.role.toLowerCase().trim() ==
       'owner';
-  bool get isMP => widget.user.role.toLowerCase().trim() == 'maintenance-planning';
+  bool get isMP =>
+    widget.user.role.toLowerCase().trim() == 'maintenance_planning';
 
   @override
   void initState() {
@@ -222,7 +223,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
   isOwner
       ? 'Owner'
       : isMP
-          ? 'Maintenance Planning'
+          ? 'Maintenance Planner'
           : 'Admin',
   maxLines: 1,
   overflow: TextOverflow.ellipsis,

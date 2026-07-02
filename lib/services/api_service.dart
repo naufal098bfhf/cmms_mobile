@@ -9,9 +9,22 @@ import '../models/tugas_tetap_model.dart';
     import '../models/dashboard_mekanik_model.dart';
     import 'package:image_picker/image_picker.dart';
 
-    class ApiService {
-static const String baseUrl =
-      "http://192.168.1.175:8001/api";
+    import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+class ApiService {
+  static String get baseUrl {
+    final url = dotenv.env['API_URL'];
+
+    if (url == null || url.isEmpty) {
+      throw Exception("API_URL tidak ditemukan di file .env");
+    }
+
+    return url;
+  }
+
+  static String get storageUrl {
+    return baseUrl.replaceAll('/api', '');
+  }
 
 
       // ================= LOGIN =================

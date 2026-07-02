@@ -1,4 +1,6 @@
   import 'package:flutter/material.dart';
+  import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
   class DetailRiwayatPage extends StatelessWidget {
     final Map data;
@@ -104,11 +106,11 @@
 
     final statusColor = getStatusColor();
 
-    final fotoUrl =
-        data['bukti_foto'] != null &&
-        data['bukti_foto'].toString().isNotEmpty
-            ? "http://192.168.1.175:8001/storage/${data['bukti_foto']}"
-            : null;
+   final fotoUrl =
+    data['bukti_foto'] != null &&
+    data['bukti_foto'].toString().isNotEmpty
+        ? "${dotenv.env['API_URL']!.replaceAll('/api', '')}/storage/${data['bukti_foto']}"
+        : null;
 
     print("BUKTI FOTO = ${data['bukti_foto']}");
     print("URL FOTO = $fotoUrl");
@@ -140,33 +142,77 @@
 
     fotoUrl != null
       ? Image.network(
-          fotoUrl,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return Container(
-              color: Colors.grey.shade300,
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.broken_image,
-                    size: 80,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    "Mekanik belum upload foto",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ],
+  fotoUrl,
+  fit: BoxFit.cover,
+
+  // Loading ketika gambar sedang di-download
+  loadingBuilder: (
+    BuildContext context,
+    Widget child,
+    ImageChunkEvent? loadingProgress,
+  ) {
+    if (loadingProgress == null) {
+      return child;
+    }
+
+    return Container(
+      color: Colors.grey.shade200,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 45,
+              height: 45,
+              child: CircularProgressIndicator(
+                strokeWidth: 4,
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
               ),
-            );
-          },
-        )
+            ),
+            SizedBox(height: 16),
+            Text(
+              "Memuat foto...",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+
+  // Jika gagal memuat gambar
+  errorBuilder: (context, error, stackTrace) {
+    return Container(
+      color: Colors.grey.shade300,
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.broken_image,
+            size: 80,
+            color: Colors.grey,
+          ),
+          SizedBox(height: 12),
+          Text(
+            "Mekanik belum upload foto",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black54,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
+)
       : Container(
       color: Colors.grey.shade100,
       child: const Center(
