@@ -634,27 +634,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                     ),
                     ...data.tugas.take(10).map((t) => buildTaskItem(t)),
                     const SizedBox(height: 20),
-
-                    // Pastikan role MP tidak bisa akses kelola user.
-                    if (!isMP)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        child: ElevatedButton.icon(
-                          icon: const Icon(Icons.people),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => UserListPage(
-                                  token: widget.user.token,
-                                  user: widget.user,
-                                ),
-                              ),
-                            );
-                          },
-                          label: const Text('Kelola User'),
-                        ),
-                      ),
                   ],
                 ),
               ),
