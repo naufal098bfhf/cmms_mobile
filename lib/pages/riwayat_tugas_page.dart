@@ -409,21 +409,22 @@ String getImageUrl(
         ),
       ),
       bottomNavigationBar: SafeArea(
-        child: widget.user.role.toLowerCase() == 'mekanik'
-            ? BottomMekanikNavbar(
-                currentIndex: 2,
-                user: widget.user,
-              )
-            : BottomAdminNavbar(
-                currentIndex: widget.user.role
-                            .toLowerCase()
-                            .trim() ==
-                        'maintenance-planning'
-                    ? 3
-                    : 4,
-                user: widget.user,
-              ),
-      ),
+  child: widget.user.role.toLowerCase() == 'mekanik'
+      ? BottomMekanikNavbar(
+          currentIndex: 2,
+          user: widget.user,
+        )
+      : BottomAdminNavbar(
+          currentIndex: (
+                  widget.user.role.toLowerCase().trim() ==
+                      'maintenance_planning' ||
+                  widget.user.role.toLowerCase().trim() ==
+                      'maintenance-planning')
+              ? 3
+              : 4,
+          user: widget.user,
+        ),
+),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
         child: Column(

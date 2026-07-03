@@ -37,11 +37,11 @@ import '../models/login_models.dart';
 
     debugPrint("ROLE LOGIN = ${user.role}");
 
-  final bool isMP =
-      user.role
-          .toLowerCase()
-          .trim() ==
-      'maintenance_planning';
+final role = user.role.toLowerCase().trim();
+
+final bool isMP =
+    role == 'maintenance_planning' ||
+    role == 'maintenance-planning';
 
   debugPrint("IS MP = $isMP");
 

@@ -12,7 +12,7 @@ val keystoreProperties = Properties().apply {
 }
 
 android {
-    namespace = "id.ac.poltekpetrokimia.cmmsmobile"
+    namespace = "com.cmmsbanten.mobile"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "29.0.14206865"
 
@@ -26,7 +26,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "id.ac.poltekpetrokimia.cmmsmobile"
+        applicationId = "com.cmmsbanten.mobile"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

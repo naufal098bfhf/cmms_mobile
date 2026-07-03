@@ -1,4 +1,4 @@
-package id.ac.poltekpetrokimia.cmmsmobile
+package com.cmmsbanten.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

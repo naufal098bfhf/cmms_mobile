@@ -37,9 +37,12 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
     bool get isOwner =>
       widget.user.role.toLowerCase().trim() ==
       'owner';
-  bool get isMP =>
-    widget.user.role.toLowerCase().trim() == 'maintenance_planning';
+  bool get isMP {
+  final role = widget.user.role.toLowerCase().trim();
 
+  return role == 'maintenance_planning' ||
+         role == 'maintenance-planning';
+}
   @override
   void initState() {
     super.initState();
@@ -434,7 +437,24 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
   Widget buildTaskItem(dynamic t) {
     final status = (t.status ?? '').toString();
     final statusLower = status.toLowerCase();
+    final String statusLabel;
 
+switch (statusLower) {
+  case 'pending':
+    statusLabel = 'Release Order';
+    break;
+
+  case 'dikerjakan':
+    statusLabel = 'Dikerjakan';
+    break;
+
+  case 'selesai':
+    statusLabel = 'Selesai';
+    break;
+
+  default:
+    statusLabel = status;
+}
     final statusColor = (status == 'Selesai' || statusLower == 'selesai') ? Colors.green : Colors.orange;
     final iconData = (status == 'Selesai' || statusLower == 'selesai') ? Icons.check_circle : Icons.engineering;
 
@@ -503,10 +523,13 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                     style: const TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                   const SizedBox(height: 6),
-                  Text(
-                    'Status: $status',
-                    style: const TextStyle(color: Colors.black54, fontSize: 12),
-                  ),
+                 Text(
+  'Status: $statusLabel',
+  style: const TextStyle(
+    color: Colors.black54,
+    fontSize: 12,
+  ),
+),
                 ],
               ),
             ),
@@ -517,9 +540,13 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                t.status ?? '-',
-                style: TextStyle(color: statusColor, fontWeight: FontWeight.bold, fontSize: 12),
-              ),
+  statusLabel,
+  style: TextStyle(
+    color: statusColor,
+    fontWeight: FontWeight.bold,
+    fontSize: 12,
+  ),
+),
             ),
           ],
         ),
