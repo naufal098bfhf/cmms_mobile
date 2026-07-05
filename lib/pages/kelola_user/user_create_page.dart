@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -310,8 +311,8 @@ Row(
     ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: imageFile != null
-          ? Image.network(
-              imageFile!.path,
+          ? Image.file(
+              File(imageFile!.path),
               width: 90,
               height: 90,
               fit: BoxFit.cover,
