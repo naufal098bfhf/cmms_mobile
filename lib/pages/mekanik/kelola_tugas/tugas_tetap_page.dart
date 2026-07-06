@@ -739,41 +739,36 @@ GridView.count(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Tugas Tetap Mekanik",
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 15,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      widget.user.name,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildStatItem("Release", releaseCount.toString()),
-                        buildStatItem("Proses", prosesCount.toString()),
-                        buildStatItem(
-                            "Validasi", validasiCount.toString()),
-                        buildStatItem("Selesai", selesaiCount.toString()),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      "Manajemen tugas preventif mekanik",
-                      style: TextStyle(
-                        color: Colors.white70,
-                        height: 1.5,
-                      ),
-                    ),
+  "Monitoring Tugas Tetap",
+  style: TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  ),
+),
+
+const SizedBox(height: 8),
+
+const Text(
+  "Manajemen Tugas Mekanik",
+  style: TextStyle(
+    color: Colors.white70,
+    fontSize: 15,
+    height: 1.4,
+  ),
+),
+
+const SizedBox(height: 30),
+
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    buildStatItem("Release Order", releaseCount.toString()),
+    buildStatItem("Proses", prosesCount.toString()),
+    buildStatItem("Validasi", validasiCount.toString()),
+    buildStatItem("Selesai", selesaiCount.toString()),
+  ],
+),
                   ],
                 ),
               ),
@@ -781,7 +776,7 @@ GridView.count(
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
+                decoration: BoxDecoration(  
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(28),
                   boxShadow: [
@@ -875,14 +870,15 @@ GridView.count(
                                     Row(
                                       children: [
                                         Expanded(
-                                          child: Text(
-                                            "Tugas Ke-${t.id}",
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
+                                    child: const Text(
+                                      "Work Order",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF111827),
+                                      ),
+                                    ),
+                                  ),
                                         buildStatus(t),
                                       ],
                                     ),

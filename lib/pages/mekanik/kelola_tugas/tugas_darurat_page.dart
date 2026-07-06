@@ -454,7 +454,7 @@ data = data.where((e) {
           ),
           const SizedBox(height: 8),
           Text(
-            "Manajemen tugas mekanik industri",
+            "Manajemen Tugas Mekanik",
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.9),
               fontSize: 15,
@@ -946,15 +946,15 @@ GridView.count(
                               Row(
                                 children: [
                                   Expanded(
-                                    child: Text(
-                                      "Tugas Ke-${t.id}",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF111827),
-                                      ),
-                                    ),
+                                child: const Text(
+                                  "Work Order",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF111827),
                                   ),
+                                ),
+                              ),
                                   buildStatus(t),
                                 ],
                               ),
