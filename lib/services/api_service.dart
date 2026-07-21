@@ -28,36 +28,43 @@ class ApiService {
 
 
       // ================= LOGIN =================
-      static Future<User> login(String email, String password) async {
-        final response = await http.post(
-          Uri.parse("$baseUrl/login"),
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-          },
-          body: jsonEncode({
-            "email": email,
-            "password": password,
-          }),
-        );
-        print("============== LOGIN ==============");
-print(response.statusCode);
-print(response.body);
+    static Future<User> login(String email, String password) async {
+  final response = await http.post(
+    Uri.parse("$baseUrl/login"),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: jsonEncode({
+      "email": email,
+      "password": password,
+    }),
+  );
 
-        final body = jsonDecode(response.body);
+  print("============== LOGIN ==============");
+  print(response.statusCode);
+  print(response.body);
 
-        if (response.statusCode == 200 && body['status'] == true) {
-          return User(
-  id: body['user']['id'],
-  name: body['user']['name'],
-  email: body['user']['email'],
-  role: body['user']['role'],
-  token: body['token'],
-  photo: body['user']['photo'],
-);
-        } else {
-          throw Exception(body['message'] ?? "Login gagal");
-        }
+  final body = jsonDecode(response.body);
+
+  print(body["status"]);
+  print(body["token"]);
+  print(body["user"]);
+
+  if (response.statusCode == 200 && body["status"] == true) {
+    return User(
+      id: body["user"]["id"],
+      name: body["user"]["name"],
+      email: body["user"]["email"],
+      role: body["user"]["role"],
+      token: body["token"] ?? "",
+      department: body["user"]["department"],
+      photo: body["user"]["photo"],
+      isActive: body["user"]["is_active"] ?? false,
+    );
+  }
+
+  throw Exception(body["message"] ?? "Login gagal");    
       }
     // ================= DASHBOARD MEKANIK =================
     static Future<DashboardMekanikModel> getDashboard(String token) async {
@@ -1184,5 +1191,40 @@ static Future<void> deleteNotifikasi(int id) async {
   if (response.statusCode != 200) {
     throw Exception(response.body);
   }
+}
+
+static Future<void> checkUsername(String username) async {
+  final response = await http.post(
+    Uri.parse("$baseUrl/check-username"),
+    body: {
+      "username": username,
+    },
+  );
+
+  final body = jsonDecode(response.body);
+
+  if (response.statusCode != 200) {
+    throw Exception(body["message"]);
+  }
+}
+
+static Future<void> forgotPassword(
+    String username,
+    String password,
+    String confirmPassword,
+) async {
+
+    final response = await http.post(
+      Uri.parse("$baseUrl/forgot-password"),
+      body: {
+        "username": username,
+        "password": password,
+        "password_confirmation": confirmPassword,
+      },
+    );
+
+    if(response.statusCode != 200){
+        throw Exception(jsonDecode(response.body)['message']);
+    }
 }
     }    

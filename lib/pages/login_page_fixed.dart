@@ -8,6 +8,8 @@ import '../services/api_service.dart';
 import 'admin/dashboard_page.dart';
 import 'mekanik/dashboard_page.dart';
 
+import 'forgot_password_page.dart';
+
 class LoginPageFixed extends StatefulWidget {
   const LoginPageFixed({super.key});
 
@@ -151,10 +153,16 @@ print("PASSWORD: ${_passwordController.text}");
       }
 
       _showError('Role tidak dikenali');
-    } catch (_) {
-      setState(() => loginError = 'Email atau password salah');
-      _showError('Email atau password salah');
-    } finally {
+    } 
+   catch (e) {
+  print(e);
+
+  setState(() {
+    loginError = e.toString();
+  });
+
+  _showError(e.toString());
+} finally {
       if (mounted) setState(() => _loading = false);
     }
   }
@@ -574,6 +582,29 @@ print("PASSWORD: ${_passwordController.text}");
                                         ),
                                       ),
                                     ),
+
+                                    Align(
+  alignment: Alignment.centerRight,
+  child: TextButton(
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const ForgotPasswordPage(),
+        ),
+      );
+    },
+    child: const Text(
+      "Lupa Password?",
+      style: TextStyle(
+        color: Color(0xFFE30613),
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ),
+),
+
+const SizedBox(height: 15),
 
                                     const SizedBox(height: 35),
 

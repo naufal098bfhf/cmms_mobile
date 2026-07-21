@@ -228,13 +228,15 @@ if (mulai.isBefore(batasHariIni)) {
           "pemberi_tugas":
               widget.userName,
 
-          "tgl_mulai":
-              tglMulai!
-                  .toIso8601String(),
+         "tgl_mulai":
+    "${tglMulai!.year.toString().padLeft(4, '0')}-"
+    "${tglMulai!.month.toString().padLeft(2, '0')}-"
+    "${tglMulai!.day.toString().padLeft(2, '0')}",
 
-          "tgl_selesai":
-              tglSelesai!
-                  .toIso8601String(),
+"tgl_selesai":
+    "${tglSelesai!.year.toString().padLeft(4, '0')}-"
+    "${tglSelesai!.month.toString().padLeft(2, '0')}-"
+    "${tglSelesai!.day.toString().padLeft(2, '0')}",
 
           "mekanik_id":
               mekanikId,
